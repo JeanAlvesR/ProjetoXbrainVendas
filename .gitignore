@@ -1,0 +1,15 @@
+# Arquivos de compilação
+target/
+
+# Arquivos de configuração do IDE
+.idea/
+*.iml
+
+# Arquivos de log
+*.log
+
+# Arquivos de dependências Maven
+# Ignora diretórios e arquivos específicos usados por algumas bibliotecas comuns
+# Exemplo: Uncomment se estiver usando o Apache Maven
+# .mvn/
+# target/
