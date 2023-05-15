@@ -25,7 +25,7 @@ public class VendaServiceImpl implements VendaService {
 
     @Override
     @Transactional //Garante que a transação seja atómica.
-    public Venda salvar(VendaDTO dto) throws RegraNegocioException{
+    public void salvar(VendaDTO dto) throws RegraNegocioException{
         if (Objects.isNull(dto.getId()) || Objects.isNull(dto.getData()) || Objects.isNull(dto.getValor()) || Objects.isNull(dto.getIdVendedor()) || Objects.isNull(dto.getNomeVendedor())) {
             throw new RegraNegocioException("Um dos atributos é nulo.");
         }
@@ -62,7 +62,5 @@ public class VendaServiceImpl implements VendaService {
         }
 
         repository.save(venda);
-
-        return venda;
     }
 }

@@ -5,6 +5,6 @@ import github.jeanalvesr.rest.dto.VendaDTO;
 
 public interface VendaService {
 
-    Venda salvar(VendaDTO dto);
+    void salvar(VendaDTO dto);
 
 }
