@@ -17,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +27,9 @@ public class VendedorServiceImp implements VendedorService {
     @Override
     public List<VendedorDTO> vendedorPorData(String dataInicio, String dataFinal) {
         try {
+            if(Objects.isNull(dataInicio) || Objects.isNull(dataFinal)){
+                throw new RegraNegocioException("As datas não podem estar vazias");
+            }
             DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate ini = LocalDate.parse(dataInicio, formatar);
             LocalDate fin = LocalDate.parse(dataFinal, formatar);
