@@ -1,16 +1,14 @@
 package github.jeanalvesr.rest.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class VendedorDTO {
+    private Integer id;
     private String nome;
-    private BigDecimal totalVendas;
-    private BigDecimal mediaDiariaVendas;
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public class Vendedor {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name= "nome", length = 30)
@@ -22,4 +23,8 @@ public class Vendedor {
 
     @OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY )
     private List<Venda> vendas;
+
+    public Vendedor(String nome){
+        this.nome = nome;
+    }
 }
