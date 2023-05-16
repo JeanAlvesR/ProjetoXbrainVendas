@@ -27,7 +27,7 @@ public class ApplicationControllerAdvice {
     }
 
     @ExceptionHandler(VendedorNaoExistenteException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiErrors handleVendedorExistenteException(VendedorNaoExistenteException vee){
         String mensagemErro = vee.getMessage();
         return new ApiErrors(mensagemErro);
