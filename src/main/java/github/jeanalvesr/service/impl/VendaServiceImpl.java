@@ -29,8 +29,11 @@ public class VendaServiceImpl implements VendaService {
         if (Objects.isNull(dto.getId()) || Objects.isNull(dto.getData()) || Objects.isNull(dto.getValor()) || Objects.isNull(dto.getIdVendedor()) || Objects.isNull(dto.getNomeVendedor())) {
             throw new RegraNegocioException("Um dos atributos é nulo.");
         }
-        if(repository.findById(dto.getId()).isPresent()){
+        else if(repository.findById(dto.getId()).isPresent()){
             throw new RegraNegocioException("O ID informado da venda já existe no banco.");
+        }
+        else if(LocalDate.parse(dto.getData()).isAfter(LocalDate.now())){
+            throw new RegraNegocioException("A venda não pode ser no futuro. Respeitar a data de hoje como limite.");
         }
 
         Venda venda = new Venda();
