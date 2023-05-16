@@ -1,9 +1,8 @@
 package github.jeanalvesr.rest.controller;
 
 
-import github.jeanalvesr.domain.entity.Venda;
 import github.jeanalvesr.rest.dto.VendaDTO;
-import github.jeanalvesr.service.VendaService;
+import github.jeanalvesr.domain.service.VendaService;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -20,8 +19,8 @@ public class VendaController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public void save(@RequestBody VendaDTO dto) {
-        service.salvar(dto);
+    public VendaDTO save(@RequestBody VendaDTO dto) {
+        return service.salvar(dto);
     }
 
 }
