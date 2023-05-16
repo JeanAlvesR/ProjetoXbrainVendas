@@ -6,7 +6,6 @@ import github.jeanalvesr.domain.repository.Vendedores;
 import github.jeanalvesr.domain.service.VendedorService;
 import github.jeanalvesr.exception.AtributoFaltanteException;
 import github.jeanalvesr.exception.DataException;
-import github.jeanalvesr.exception.VendedorExistenteException;
 import github.jeanalvesr.rest.dto.VendedorDTO;
 import github.jeanalvesr.rest.dto.VendedorValorDTO;
 import lombok.RequiredArgsConstructor;
