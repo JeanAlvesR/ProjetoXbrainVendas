@@ -16,7 +16,8 @@ import java.time.LocalDate;
 @Table(name = "venda")
 public class Venda {
 
-    @Id
+    @Id()
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "data")
     private LocalDate data;
