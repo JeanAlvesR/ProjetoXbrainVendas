@@ -29,7 +29,7 @@ public class VendaServiceImpl implements VendaService {
     @Override
     @Transactional //Garante que a transação seja atómica.
     public VendaDTO salvar(VendaDTO dto) {
-        if (Objects.isNull(dto.getId()) || Objects.isNull(dto.getData()) || Objects.isNull(dto.getValor()) || Objects.isNull(dto.getIdVendedor())) {
+        if (Objects.isNull(dto.getData()) || Objects.isNull(dto.getValor()) || Objects.isNull(dto.getIdVendedor())) {
             throw new AtributoFaltanteException("Um dos atributos é nulo.");
         }
 
@@ -63,4 +63,5 @@ public class VendaServiceImpl implements VendaService {
         dto.setNomeVendedor(venda.getVendedor().getNome());
         return dto;
     }
+
 }
