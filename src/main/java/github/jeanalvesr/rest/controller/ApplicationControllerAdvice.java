@@ -2,6 +2,7 @@ package github.jeanalvesr.rest.controller;
 
 import github.jeanalvesr.exception.AtributoFaltanteException;
 import github.jeanalvesr.exception.DataException;
+import github.jeanalvesr.exception.VendedorExistenteException;
 import github.jeanalvesr.rest.ApiErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,5 +26,11 @@ public class ApplicationControllerAdvice {
         return new ApiErrors(mensagemErro);
     }
 
+    @ExceptionHandler(VendedorExistenteException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiErrors handleVendedorExistenteException(VendedorExistenteException vee){
+        String mensagemErro = vee.getMessage();
+        return new ApiErrors(mensagemErro);
+    }
 
 }
