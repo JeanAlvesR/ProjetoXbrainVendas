@@ -8,7 +8,6 @@ import github.jeanalvesr.exception.AtributoFaltanteException;
 import github.jeanalvesr.exception.DataException;
 import github.jeanalvesr.rest.dto.VendedorDTO;
 import github.jeanalvesr.rest.dto.VendedorValorDTO;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-public class VendedorServiceImp implements VendedorService {
+public class VendedorServiceImpl implements VendedorService {
 
     @Autowired
     private VendedorRepository vendedorRepository;
