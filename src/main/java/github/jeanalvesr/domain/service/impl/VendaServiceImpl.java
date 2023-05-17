@@ -2,14 +2,15 @@ package github.jeanalvesr.domain.service.impl;
 
 import github.jeanalvesr.domain.entity.Venda;
 import github.jeanalvesr.domain.entity.Vendedor;
-import github.jeanalvesr.domain.repository.Vendas;
-import github.jeanalvesr.domain.repository.Vendedores;
+import github.jeanalvesr.domain.repository.VendaRepository;
+import github.jeanalvesr.domain.repository.VendedorRepository;
 import github.jeanalvesr.exception.AtributoFaltanteException;
 import github.jeanalvesr.exception.DataException;
 import github.jeanalvesr.exception.VendedorNaoExistenteException;
 import github.jeanalvesr.rest.dto.VendaDTO;
 import github.jeanalvesr.domain.service.VendaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,11 +21,13 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 //constrói um construtor com todos os atributos obrigatórios, isto é, os finals. No construtor, o Spring entende que precisa injetá-los.
 public class VendaServiceImpl implements VendaService {
-    private final Vendas repository;
-    private final Vendedores vendedores;
+
+    @Autowired
+    private  VendaRepository repository;
+    @Autowired
+    private  VendedorRepository vendedorRepository;
 
     @Override
     @Transactional //Garante que a transação seja atómica.
@@ -50,7 +53,7 @@ public class VendaServiceImpl implements VendaService {
 
         venda.setValor(dto.getValor());
 
-        Optional<Vendedor> aux = vendedores.findById(dto.getId());
+        Optional<Vendedor> aux = vendedorRepository.findById(dto.getId());
 
         if (aux.isEmpty()) {
             throw new VendedorNaoExistenteException("O ID " + dto.getIdVendedor() + " do vendedor não existe no banco");

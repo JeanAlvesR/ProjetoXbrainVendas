@@ -2,13 +2,14 @@ package github.jeanalvesr.domain.service.impl;
 
 import github.jeanalvesr.domain.entity.Venda;
 import github.jeanalvesr.domain.entity.Vendedor;
-import github.jeanalvesr.domain.repository.Vendedores;
+import github.jeanalvesr.domain.repository.VendedorRepository;
 import github.jeanalvesr.domain.service.VendedorService;
 import github.jeanalvesr.exception.AtributoFaltanteException;
 import github.jeanalvesr.exception.DataException;
 import github.jeanalvesr.rest.dto.VendedorDTO;
 import github.jeanalvesr.rest.dto.VendedorValorDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -22,9 +23,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class VendedorServiceImp implements VendedorService {
-    private final Vendedores vendedores;
+
+    @Autowired
+    private VendedorRepository vendedorRepository;
     @Override
     public List<VendedorValorDTO> vendedorPorData(String dataInicio, String dataFinal) {
         try {
@@ -41,7 +43,7 @@ public class VendedorServiceImp implements VendedorService {
 
             long quantidadeDias = ChronoUnit.DAYS.between(ini, fin);
 
-            List<Vendedor> listaVendedor = vendedores.buscarVendedoresComVendasEntreDatas(ini, fin);
+            List<Vendedor> listaVendedor = vendedorRepository.buscarVendedoresComVendasEntreDatas(ini, fin);
 
             List<VendedorValorDTO> listaDTO = listaVendedor.stream().map(vendedor -> {
                         VendedorValorDTO vendedorValorDTO = new VendedorValorDTO();
@@ -72,7 +74,7 @@ public class VendedorServiceImp implements VendedorService {
 
         Vendedor vendedor = new Vendedor(dto.getNome());
 
-        return vendedores.save(vendedor).getId();
+        return vendedorRepository.save(vendedor).getId();
     }
 
 }
