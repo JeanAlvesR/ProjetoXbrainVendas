@@ -53,7 +53,7 @@ public class VendaServiceImpl implements VendaService {
 
         venda.setValor(dto.getValor());
 
-        Optional<Vendedor> aux = vendedorRepository.findById(dto.getId());
+        Optional<Vendedor> aux = vendedorRepository.findById(dto.getIdVendedor());
 
         if (aux.isEmpty()) {
             throw new VendedorNaoExistenteException("O ID " + dto.getIdVendedor() + " do vendedor não existe no banco");
@@ -63,6 +63,7 @@ public class VendaServiceImpl implements VendaService {
 
         venda = repository.save(venda);
         dto.setId(venda.getId());
+        dto.setIdVendedor(aux.get().getId());
         dto.setNomeVendedor(venda.getVendedor().getNome());
         return dto;
     }
