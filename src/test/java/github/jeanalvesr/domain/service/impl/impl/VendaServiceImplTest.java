@@ -94,7 +94,7 @@ class VendaServiceImplTest {
 
         Assertions.assertEquals("O ID 2 do vendedor não existe no banco", exception.getMessage());
 
-        verify(vendedorRepository, times(0)).findById(2);
+        verify(vendedorRepository, times(1)).findById(2);
         verify(vendaRepository, never()).save(any(Venda.class));
     }
 
